@@ -69,11 +69,11 @@ int main()
 			printf("答题结束！\n");
 			printf("最终得分:%.2lf\n",p->score);
 			///将链表信息存回文件
-			stu = fopen("student.dat", "wb+");
+			/*stu = fopen("student.dat", "wb+");
 			if (stu == NULL) {
 				perror("student.dat文件打开失败");
 				return 0;
-			}
+			}*/
 			/*write_stu(head_stu,stu);
 			fclose(stu);*/
 			out(&sign_in_mark);
@@ -98,11 +98,11 @@ int main()
 			output_stu(p);
 			printf("请输入更改后的信息：\n");
 			input_stu(p,2);//不改变分数
-			stu = fopen("student.dat", "wb+");
+			/*stu = fopen("student.dat", "wb+");
 			if (stu == NULL) {
 				perror("student.dat文件打开失败");
 				return 0;
-			}
+			}*/
 			/*write_stu(head_stu, stu);
 			fclose(stu);*/
 			printf("--------------------------------------------------------------------------------------------\n");
@@ -134,11 +134,15 @@ int main()
 		if (select_mark == 1)
 		{
 			question* p_que=head_que->next;
+			int i = 0;
 			printf("--------------------------------------------------------------------------------------------\n");
 			while (p != NULL)
 			{
+				if (i > 22)
+					break;
 				output_que(p_que);
 				p_que = p_que->next;
+				i++;
 			}
 			printf("--------------------------------------------------------------------------------------------\n");
 			out2(&sign_in_mark);
@@ -147,19 +151,23 @@ int main()
 		//2 打印学生成绩
 		else if (select_mark == 2)
 		{
-			student* p_stu=head_stu->next;//到达第二位，既是有效位
+			student* p_s=head_stu;//到达第二位，既是有效位
 			printf("--------------------------------------------------------------------------------------------\n");
 			if (sort_stu_score(head_stu) == 1)
 			{
-				while (p_stu->next != NULL)
+				p_s = p_s->next;
+				while (p_s != NULL)
 				{
-					output_stu(p_stu);
-					p_stu = p_stu->next;
+					output_stu(p_s);
+					p_s = p_s->next;
 				}
-				sort_stu_score(head_stu);//将列表恢复原本排序（学号排序）
+				
 			}
 			else
+			{
 				printf("打印失败！！！\n");
+			}
+			sort_stu_score(head_stu);//将列表恢复原本排序（学号排序）
 			printf("--------------------------------------------------------------------------------------------\n");
 			out2(&sign_in_mark);
 			getchar();
@@ -193,11 +201,11 @@ int main()
 					}
 					ptemp = ptemp->next;
 				}
-				que = fopen("question.dat", "wb+");
+				/*que = fopen("question.dat", "wb+");
 				if (que == NULL) {
 					perror("question.dat文件打开失败");
 					return 0;
-				}
+				}*/
 				/*write_stu(head_que, que);
 				fclose(que);*/
 				getchar();
@@ -223,11 +231,11 @@ int main()
 					p_que = p_que->next;
 				}
 				/////////////////////
-				que = fopen("question.dat", "wb+");
+				/*que = fopen("question.dat", "wb+");
 				if (que == NULL) {
 					perror("question.dat文件打开失败");
 					return 0;
-				}
+				}*/
 				/*write_stu(head_que, que);
 				fclose(que);*/
 				out2(&sign_in_mark);
@@ -254,11 +262,11 @@ int main()
 					p_que = p_que->next;
 				}
 				///////////////////////////////
-				que = fopen("question.dat", "wb+");
+				/*que = fopen("question.dat", "wb+");
 				if (que == NULL) {
 					perror("question.dat文件打开失败");
 					return 0;
-				}
+				}*/
 				/*write_stu(head_que, que);
 				fclose(que);*/
 				printf("--------------------------------------------------------------------------------------------\n");
@@ -291,19 +299,23 @@ int main()
 				/////////按学号排序
 				sort_stu(head_stu);
 				//////////////////////
+				int i=0;
 				while (p != NULL)
 				{
+					if (i > 22)
+						break;
 					output_stu(p_stu);
 					p_stu = p_stu->next;
+					i++;
 				}
 				///////////////////////////
-				stu = fopen("student.dat", "wb+");
+				/*stu = fopen("student.dat", "wb+");
 				if (stu == NULL) {
 					perror("student.dat文件打开失败");
 					return 0;
-				}
-				write_stu(head_stu, stu);
-				fclose(stu);
+				}*/
+				/*write_stu(head_stu, stu);
+				fclose(stu);*/
 				out2(&sign_in_mark);
 				getchar();
 			}
@@ -323,11 +335,11 @@ int main()
 					output_stu(p_stu);
 					p_stu = p_stu->next;
 				}
-				stu = fopen("student.dat", "wb+");
+				/*stu = fopen("student.dat", "wb+");
 				if (stu == NULL) {
 					perror("student.dat文件打开失败");
 					return 0;
-				}
+				}*/
 			/*	write_stu(head_stu, stu);
 				fclose(stu);*/
 				//////////////////////////////
